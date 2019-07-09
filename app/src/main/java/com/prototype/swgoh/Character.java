@@ -7,6 +7,8 @@ import io.realm.RealmObject;
 
 public class Character extends RealmObject {
 
+    private int id;
+
     @SerializedName("name")
     private String name;
 
@@ -48,6 +50,14 @@ public class Character extends RealmObject {
 
     @SerializedName("activate_shard_count")
     private Integer activateShardCount;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

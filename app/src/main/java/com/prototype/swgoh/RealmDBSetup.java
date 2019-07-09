@@ -26,7 +26,7 @@ public class RealmDBSetup {
             mRealm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
-                    realm.insert(mCharacters);
+                    insertCharacterWithId(realm);
                 }
             });
         }
@@ -39,6 +39,15 @@ public class RealmDBSetup {
             mCharacters.addAll(service.execute().get());
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void insertCharacterWithId(Realm realm) {
+        int id = 0;
+
+        for(Character character : mCharacters) {
+            character.setId(id++);
+            realm.insert(character);
         }
     }
 

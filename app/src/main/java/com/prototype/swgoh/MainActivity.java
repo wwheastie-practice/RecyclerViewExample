@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         realmDBSetup.createDatabase();
     }
 
+    private void deleteDatabase() {
+        Realm.init(this);
+        Realm.deleteRealm(Realm.getDefaultConfiguration());
+    }
+
 }
