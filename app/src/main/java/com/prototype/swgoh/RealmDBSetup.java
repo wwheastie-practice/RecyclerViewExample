@@ -1,9 +1,11 @@
 package com.prototype.swgoh;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 public class RealmDBSetup {
 
@@ -30,6 +32,20 @@ public class RealmDBSetup {
                 }
             });
         }
+    }
+
+    public ArrayList<Character> getAllCharactersFromDB() {
+        final ArrayList<Character> characters = new ArrayList<>();
+
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<Character> results = realm.where(Character.class).findAll();
+                characters.addAll(results);
+            }
+        });
+
+        return characters;
     }
 
     private void retrieveAllCharactersFromAPI() {
